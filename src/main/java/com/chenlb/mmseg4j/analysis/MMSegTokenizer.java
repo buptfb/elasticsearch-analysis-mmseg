@@ -66,6 +66,13 @@ public class MMSegTokenizer extends Tokenizer {
 			//lucene 3.0
 			//termAtt.setTermBuffer(word.getSen(), word.getWordOffset(), word.getLength());
 			//lucene 3.1
+			// stopwords by fanbo
+            		if(stopWords.contains(word.getString())){
+                		return incrementToken();
+            		}   
+            		if(word.getLength < 2){ 
+                		return incrementToken();
+            		}
 			termAtt.copyBuffer(word.getSen(), word.getWordOffset(), word.getLength());
 			offsetAtt.setOffset(word.getStartOffset(), word.getEndOffset());
 			typeAtt.setType(word.getType());
